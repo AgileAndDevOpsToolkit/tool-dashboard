@@ -1,17 +1,68 @@
 [
   {
-    "lien": "https://motsmeles.agiletoolkit.fr/",
-    "titre": "Mots mêlés",
-    "description": "Générez et animez une grille de mots mêlés personnalisée pour vos formations et ateliers.",
-    "image": "",
-    "altImage": "Application Mots mêlés",
-    "nouvelOnglet": false
+    "titre": "Animations  et Ice Breakers",
+    "applications": [
+        {
+            "lien": "https://motsmeles.agiletoolkit.fr/",
+            "titre": "Mots mêlés",
+            "description": "Générez et animez une grille de mots mêlés personnalisée pour vos formations et ateliers.",
+            "image": "",
+            "altImage": "Application Mots mêlés",
+            "nouvelOnglet": false
+        },
+        {
+            "lien": "https://randomwheel.agiletoolkit.fr/",
+            "titre": "Roue des prénoms",
+            "description": "Tirez au sort un participant à l'aide d'une roue interactive, configurable et réutilisable.",
+            "icone": "🎯",
+            "nouvelOnglet": false
+        },
+        {
+            "lien": "https://agileanddevopstoolkit.github.io/battle-ice-breaker/",
+            "titre": "Battle Ice Breaker",
+            "description": "Battle en mode King of The Hill d'un ensemble d'items",
+            "icone": "⚔️",
+            "nouvelOnglet": false
+        },
+        {
+            "lien": "https://agileanddevopstoolkit.github.io/EasyQuiz/",
+            "titre": "Easy Quiz",
+            "description": "Créez et animez des quiz pour vos formations et ateliers.",
+            "icone": "❓",
+            "nouvelOnglet": false
+        }
+
+    ]
   },
   {
-    "lien": "https://randomwheel.agiletoolkit.fr/",
-    "titre": "Roue des prénoms",
-    "description": "Tirez au sort un participant à l'aide d'une roue interactive, configurable et réutilisable.",
-    "icone": "🎯",
-    "nouvelOnglet": false
+    "titre": "Rétrospectives",
+    "applications": [
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/retro-templates/",
+        "titre": "Catalogue de templates de rétrospectives",
+        "description": "Un site web qui regroupe un ensemble de templates de rétrospectives",
+        "icone": "🖼️",
+        "nouvelOnglet": false
+      },
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/prompt-collection/retro/Speedboat/themification/index.html",
+        "titre": "Thémification Speedboat",
+        "description": "Un petit outil pour générer des prompts de thémification pour le template Speedboat",
+        "icone": "🚤",
+        "nouvelOnglet": false
+      }
+    ]
+  },
+  {
+    "titre": "Démos",
+    "applications": [
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/BingoDemo/",
+        "titre": "Bingo Démo",
+        "description": "Préparez des super démos avec l'application Bingo Démo",
+        "icone": "▦",
+        "nouvelOnglet": false
+      }
+    ]
   }
 ]

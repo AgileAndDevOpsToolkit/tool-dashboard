@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Collection d'applications et d'outils interactifs Agile Toolkit">
-  <title>Mes applications | Agile Toolkit</title>
+  <meta
+    name="description"
+    content="Collection d'applications et d'outils interactifs Agile Toolkit"
+  >
+  <title>Collection d'applications | Agile Toolkit</title>
 
   <style>
     :root {
@@ -80,7 +83,22 @@
       padding: 2.25rem 0;
     }
 
-    .section-header {
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    .category {
+      min-width: 0;
+    }
+
+    .category:not(:last-child) {
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .category__header {
       display: flex;
       align-items: end;
       justify-content: space-between;
@@ -88,15 +106,18 @@
       margin-bottom: 1.25rem;
     }
 
-    .section-header h2 {
+    .category__title {
       margin: 0;
       font-size: 1.45rem;
+      line-height: 1.3;
     }
 
-    .counter {
+    .category__counter {
+      flex: none;
       margin: 0;
       color: var(--text-muted);
       font-size: 0.92rem;
+      white-space: nowrap;
     }
 
     .cards {
@@ -152,7 +173,11 @@
       font-size: 2.5rem;
       font-weight: 700;
       background:
-        linear-gradient(135deg, rgba(9, 105, 218, 0.10), rgba(9, 105, 218, 0.02));
+        linear-gradient(
+          135deg,
+          rgba(9, 105, 218, 0.10),
+          rgba(9, 105, 218, 0.02)
+        );
       border-bottom: 1px solid var(--border-light);
     }
 
@@ -215,6 +240,7 @@
     }
 
     .footer {
+      margin-top: 0.25rem;
       padding-top: 1.25rem;
       color: var(--text-muted);
       font-size: 0.9rem;
@@ -228,7 +254,7 @@
         padding-top: 2rem;
       }
 
-      .section-header {
+      .category__header {
         align-items: flex-start;
         flex-direction: column;
         gap: 0.25rem;
@@ -262,16 +288,9 @@
     </header>
 
     <main class="main">
-      <section aria-labelledby="applications-title">
-        <div class="section-header">
-          <h2 id="applications-title">Applications disponibles</h2>
-          <p id="counter" class="counter" aria-live="polite"></p>
-        </div>
-
-        <div id="cards" class="cards" aria-live="polite">
-          <p class="status">Chargement des applications…</p>
-        </div>
-      </section>
+      <div id="categories" class="categories" aria-live="polite">
+        <p class="status">Chargement des applications…</p>
+      </div>
     </main>
 
     <footer class="footer">
@@ -283,34 +302,33 @@
     "use strict";
 
     const DATA_FILE = "liens.json";
-    const cardsContainer = document.getElementById("cards");
-    const counter = document.getElementById("counter");
+    const categoriesContainer = document.getElementById("categories");
 
-    function createCard(item, index) {
+    function createCard(application, applicationIndex) {
       const link = document.createElement("a");
       link.className = "card";
-      link.href = item.lien;
+      link.href = application.lien;
       link.setAttribute(
         "aria-label",
-        `Ouvrir l'application ${item.titre}`
+        `Ouvrir l'application ${application.titre}`
       );
 
-      if (item.nouvelOnglet === true) {
+      if (application.nouvelOnglet === true) {
         link.target = "_blank";
         link.rel = "noopener noreferrer";
       }
 
-      const visual = createVisual(item, index);
+      const visual = createVisual(application, applicationIndex);
       const content = document.createElement("div");
       content.className = "card__content";
 
       const title = document.createElement("h3");
       title.className = "card__title";
-      title.textContent = item.titre;
+      title.textContent = application.titre;
 
       const description = document.createElement("p");
       description.className = "card__description";
-      description.textContent = item.description;
+      description.textContent = application.description;
 
       const action = document.createElement("span");
       action.className = "card__action";
@@ -322,71 +340,131 @@
       return link;
     }
 
-    function createVisual(item, index) {
-      if (item.image) {
+    function createVisual(application, applicationIndex) {
+      if (application.image) {
         const image = document.createElement("img");
         image.className = "card__image";
-        image.src = item.image;
-        image.alt = item.altImage || "";
+        image.src = application.image;
+        image.alt = application.altImage || "";
         image.loading = "lazy";
         image.decoding = "async";
 
         image.addEventListener("error", () => {
-          image.replaceWith(createPlaceholder(item, index));
+          image.replaceWith(
+            createPlaceholder(application, applicationIndex)
+          );
         });
 
         return image;
       }
 
-      return createPlaceholder(item, index);
+      return createPlaceholder(application, applicationIndex);
     }
 
-    function createPlaceholder(item, index) {
+    function createPlaceholder(application, applicationIndex) {
       const placeholder = document.createElement("div");
       placeholder.className = "card__placeholder";
       placeholder.setAttribute("aria-hidden", "true");
       placeholder.textContent =
-        item.icone ||
-        item.titre?.trim()?.charAt(0)?.toUpperCase() ||
-        String(index + 1);
+        application.icone ||
+        application.titre?.trim()?.charAt(0)?.toUpperCase() ||
+        String(applicationIndex + 1);
 
       return placeholder;
     }
 
-    function isValidItem(item) {
+    function createCategory(category, categoryIndex) {
+      const section = document.createElement("section");
+      section.className = "category";
+
+      const titleId = `category-title-${categoryIndex}`;
+      section.setAttribute("aria-labelledby", titleId);
+
+      const header = document.createElement("div");
+      header.className = "category__header";
+
+      const title = document.createElement("h2");
+      title.className = "category__title";
+      title.id = titleId;
+      title.textContent = category.titre;
+
+      const validApplications = category.applications.filter(
+        isValidApplication
+      );
+
+      const counter = document.createElement("p");
+      counter.className = "category__counter";
+      counter.textContent =
+        validApplications.length === 1
+          ? "1 application"
+          : `${validApplications.length} applications`;
+
+      header.append(title, counter);
+
+      const cards = document.createElement("div");
+      cards.className = "cards";
+
+      if (validApplications.length === 0) {
+        const emptyMessage = document.createElement("p");
+        emptyMessage.className = "status";
+        emptyMessage.textContent =
+          "Aucune application n’est configurée dans cette catégorie.";
+        cards.append(emptyMessage);
+      } else {
+        cards.append(
+          ...validApplications.map((application, applicationIndex) =>
+            createCard(application, applicationIndex)
+          )
+        );
+      }
+
+      section.append(header, cards);
+      return section;
+    }
+
+    function isValidApplication(application) {
       return (
-        item &&
-        typeof item.lien === "string" &&
-        item.lien.trim() !== "" &&
-        typeof item.titre === "string" &&
-        item.titre.trim() !== "" &&
-        typeof item.description === "string"
+        application &&
+        typeof application.lien === "string" &&
+        application.lien.trim() !== "" &&
+        typeof application.titre === "string" &&
+        application.titre.trim() !== "" &&
+        typeof application.description === "string"
       );
     }
 
-    function renderItems(items) {
-      const validItems = items.filter(isValidItem);
-      cardsContainer.replaceChildren(
-        ...validItems.map((item, index) => createCard(item, index))
+    function isValidCategory(category) {
+      return (
+        category &&
+        typeof category.titre === "string" &&
+        category.titre.trim() !== "" &&
+        Array.isArray(category.applications)
       );
+    }
 
-      const count = validItems.length;
-      counter.textContent =
-        count === 1 ? "1 application" : `${count} applications`;
+    function renderCategories(categories) {
+      const validCategories = categories.filter(isValidCategory);
 
-      if (count === 0) {
-        cardsContainer.innerHTML =
-          '<p class="status">Aucune application n’est configurée.</p>';
+      if (validCategories.length === 0) {
+        categoriesContainer.innerHTML =
+          '<p class="status">Aucune catégorie n’est configurée.</p>';
+        return;
       }
+
+      categoriesContainer.replaceChildren(
+        ...validCategories.map((category, categoryIndex) =>
+          createCategory(category, categoryIndex)
+        )
+      );
     }
 
     function showError(error) {
       console.error(error);
-      counter.textContent = "";
-      cardsContainer.innerHTML = `
+      categoriesContainer.innerHTML = `
         <div class="status status--error" role="alert">
           Impossible de charger <strong>${DATA_FILE}</strong>.
-          Vérifiez que le fichier existe et que la page est servie par un serveur web.
+          Vérifiez que le fichier existe, que sa structure est valide et que
+          la page est servie par un serveur web.
         </div>
       `;
     }
@@ -405,11 +483,11 @@
 
         if (!Array.isArray(data)) {
           throw new TypeError(
-            `${DATA_FILE} doit contenir un tableau JSON à la racine.`
+            `${DATA_FILE} doit contenir un tableau de catégories à la racine.`
           );
         }
 
-        renderItems(data);
+        renderCategories(data);
       } catch (error) {
         showError(error);
       }
