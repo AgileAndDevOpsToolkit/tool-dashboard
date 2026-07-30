@@ -1,0 +1,17 @@
+[
+  {
+    "lien": "https://motsmeles.agiletoolkit.fr/",
+    "titre": "Mots mêlés",
+    "description": "Générez et animez une grille de mots mêlés personnalisée pour vos formations et ateliers.",
+    "image": "",
+    "altImage": "Application Mots mêlés",
+    "nouvelOnglet": false
+  },
+  {
+    "lien": "https://randomwheel.agiletoolkit.fr/",
+    "titre": "Roue des prénoms",
+    "description": "Tirez au sort un participant à l'aide d'une roue interactive, configurable et réutilisable.",
+    "icone": "🎯",
+    "nouvelOnglet": false
+  }
+]

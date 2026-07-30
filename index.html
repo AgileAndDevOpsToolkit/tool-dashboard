@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Collection d'applications et d'outils interactifs Agile Toolkit">
+  <title>Mes applications | Agile Toolkit</title>
+
+  <style>
+    :root {
+      --background: #f6f8fa;
+      --surface: #ffffff;
+      --surface-hover: #fbfdff;
+      --text: #1f2328;
+      --text-muted: #59636e;
+      --primary: #0969da;
+      --primary-hover: #0550ae;
+      --border: #d0d7de;
+      --border-light: #eaeef2;
+      --shadow: 0 8px 24px rgba(140, 149, 159, 0.16);
+      --radius: 12px;
+      --content-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--background);
+    }
+
+    .page {
+      width: min(100% - 2rem, var(--content-width));
+      margin: 0 auto;
+      padding: 3rem 0 2rem;
+    }
+
+    .hero {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 0.35rem;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--primary);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .hero__description {
+      max-width: 760px;
+      margin: 0.9rem 0 0;
+      color: var(--text-muted);
+      font-size: 1.08rem;
+    }
+
+    .main {
+      padding: 2.25rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.45rem;
+    }
+
+    .counter {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      min-height: 245px;
+      flex-direction: column;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background-color 160ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      background: var(--surface-hover);
+      border-color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .card:focus-visible {
+      outline: 3px solid rgba(9, 105, 218, 0.3);
+      outline-offset: 3px;
+    }
+
+    .card__image {
+      width: 100%;
+      height: 145px;
+      object-fit: cover;
+      background: #eef2f6;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .card__placeholder {
+      display: grid;
+      width: 100%;
+      height: 145px;
+      place-items: center;
+      color: var(--primary);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background:
+        linear-gradient(135deg, rgba(9, 105, 218, 0.10), rgba(9, 105, 218, 0.02));
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .card__content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 1.25rem;
+    }
+
+    .card__title {
+      margin: 0;
+      color: var(--primary);
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .card:hover .card__title {
+      color: var(--primary-hover);
+    }
+
+    .card__description {
+      margin: 0.75rem 0 1rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .card__action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      color: var(--primary);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .card__action::after {
+      content: "→";
+      transition: transform 160ms ease;
+    }
+
+    .card:hover .card__action::after {
+      transform: translateX(3px);
+    }
+
+    .status {
+      padding: 1.25rem;
+      color: var(--text-muted);
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    .status--error {
+      color: #cf222e;
+      border-color: #ff8182;
+      background: #fff8f8;
+    }
+
+    .footer {
+      padding-top: 1.25rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        width: min(100% - 1.25rem, var(--content-width));
+        padding-top: 2rem;
+      }
+
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .card {
+        min-height: 220px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="hero__eyebrow">Agile Toolkit</p>
+      <h1>Collection d'applications</h1>
+      <p class="hero__description">
+        Une sélection d'outils interactifs, de jeux et de petites applications
+        conçus pour faciliter les ateliers, formations et animations d'équipe.
+      </p>
+    </header>
+
+    <main class="main">
+      <section aria-labelledby="applications-title">
+        <div class="section-header">
+          <h2 id="applications-title">Applications disponibles</h2>
+          <p id="counter" class="counter" aria-live="polite"></p>
+        </div>
+
+        <div id="cards" class="cards" aria-live="polite">
+          <p class="status">Chargement des applications…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Agile Toolkit · Collection d'applications interactives</p>
+    </footer>
+  </div>
+
+  <script>
+    "use strict";
+
+    const DATA_FILE = "liens.json";
+    const cardsContainer = document.getElementById("cards");
+    const counter = document.getElementById("counter");
+
+    function createCard(item, index) {
+      const link = document.createElement("a");
+      link.className = "card";
+      link.href = item.lien;
+      link.setAttribute(
+        "aria-label",
+        `Ouvrir l'application ${item.titre}`
+      );
+
+      if (item.nouvelOnglet === true) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+
+      const visual = createVisual(item, index);
+      const content = document.createElement("div");
+      content.className = "card__content";
+
+      const title = document.createElement("h3");
+      title.className = "card__title";
+      title.textContent = item.titre;
+
+      const description = document.createElement("p");
+      description.className = "card__description";
+      description.textContent = item.description;
+
+      const action = document.createElement("span");
+      action.className = "card__action";
+      action.textContent = "Ouvrir l'application";
+
+      content.append(title, description, action);
+      link.append(visual, content);
+
+      return link;
+    }
+
+    function createVisual(item, index) {
+      if (item.image) {
+        const image = document.createElement("img");
+        image.className = "card__image";
+        image.src = item.image;
+        image.alt = item.altImage || "";
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        image.addEventListener("error", () => {
+          image.replaceWith(createPlaceholder(item, index));
+        });
+
+        return image;
+      }
+
+      return createPlaceholder(item, index);
+    }
+
+    function createPlaceholder(item, index) {
+      const placeholder = document.createElement("div");
+      placeholder.className = "card__placeholder";
+      placeholder.setAttribute("aria-hidden", "true");
+      placeholder.textContent =
+        item.icone ||
+        item.titre?.trim()?.charAt(0)?.toUpperCase() ||
+        String(index + 1);
+
+      return placeholder;
+    }
+
+    function isValidItem(item) {
+      return (
+        item &&
+        typeof item.lien === "string" &&
+        item.lien.trim() !== "" &&
+        typeof item.titre === "string" &&
+        item.titre.trim() !== "" &&
+        typeof item.description === "string"
+      );
+    }
+
+    function renderItems(items) {
+      const validItems = items.filter(isValidItem);
+      cardsContainer.replaceChildren(
+        ...validItems.map((item, index) => createCard(item, index))
+      );
+
+      const count = validItems.length;
+      counter.textContent =
+        count === 1 ? "1 application" : `${count} applications`;
+
+      if (count === 0) {
+        cardsContainer.innerHTML =
+          '<p class="status">Aucune application n’est configurée.</p>';
+      }
+    }
+
+    function showError(error) {
+      console.error(error);
+      counter.textContent = "";
+      cardsContainer.innerHTML = `
+        <div class="status status--error" role="alert">
+          Impossible de charger <strong>${DATA_FILE}</strong>.
+          Vérifiez que le fichier existe et que la page est servie par un serveur web.
+        </div>
+      `;
+    }
+
+    async function loadLinks() {
+      try {
+        const response = await fetch(DATA_FILE, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(
+            `Erreur HTTP ${response.status} lors du chargement de ${DATA_FILE}`
+          );
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new TypeError(
+            `${DATA_FILE} doit contenir un tableau JSON à la racine.`
+          );
+        }
+
+        renderItems(data);
+      } catch (error) {
+        showError(error);
+      }
+    }
+
+    loadLinks();
+  </script>
+</body>
+</html>
