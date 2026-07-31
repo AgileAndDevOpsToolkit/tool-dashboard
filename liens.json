@@ -6,7 +6,7 @@
             "lien": "https://motsmeles.agiletoolkit.fr/",
             "titre": "Mots mêlés",
             "description": "Générez et animez une grille de mots mêlés personnalisée pour vos formations et ateliers.",
-            "image": "",
+            "image": "images/MotsMeles.png",
             "altImage": "Application Mots mêlés",
             "nouvelOnglet": false
         },
@@ -14,6 +14,7 @@
             "lien": "https://randomwheel.agiletoolkit.fr/",
             "titre": "Roue des prénoms",
             "description": "Tirez au sort un participant à l'aide d'une roue interactive, configurable et réutilisable.",
+            "image": "images/roue-des-prenoms.png",
             "icone": "🎯",
             "nouvelOnglet": false
         },
@@ -60,7 +61,20 @@
         "lien": "https://agileanddevopstoolkit.github.io/BingoDemo/",
         "titre": "Bingo Démo",
         "description": "Préparez des super démos avec l'application Bingo Démo",
+        "image": "images/BingoDemo.png ",
         "icone": "▦",
+        "nouvelOnglet": false
+      }
+    ]
+  },
+{
+    "titre": "Divers",
+    "applications": [
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/ai-learning/",
+        "titre": "Apprendre l'IA",
+        "description": "Un site qui organise l'ensemble de mes vidéos d'IA par thématique",
+        "icone": "🤖",
         "nouvelOnglet": false
       }
     ]
