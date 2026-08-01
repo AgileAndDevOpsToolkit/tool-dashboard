@@ -67,7 +67,19 @@
       }
     ]
   },
-{
+  {
+    "titre": "Vision Produit",
+    "applications": [
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/Categorix",
+        "titre": "Categorix",
+        "description": "Un gadget pour classer un liste d'items en différentes catégories. Utile notamment pour classer des backlog items (Vision Produit)",
+        "icone": "",
+        "nouvelOnglet": false
+      }
+    ]
+  },
+  {
     "titre": "Divers",
     "applications": [
       {
