@@ -74,6 +74,7 @@
         "lien": "https://agileanddevopstoolkit.github.io/Categorix",
         "titre": "Categorix",
         "description": "Un gadget pour classer un liste d'items en différentes catégories. Utile notamment pour classer des backlog items (Vision Produit)",
+        "image": "https://agileanddevopstoolkit.github.io/Categorix/doc/categorix_icone.png",
         "icone": "",
         "nouvelOnglet": false
       }
