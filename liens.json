@@ -88,13 +88,20 @@
     ]
   },
   {
-    "titre": "Divers",
+    "titre": "IA (et agilité)",
     "applications": [
       {
         "lien": "https://agileanddevopstoolkit.github.io/ai-learning/",
         "titre": "Apprendre l'IA",
         "description": "Un site qui organise l'ensemble de mes vidéos d'IA par thématique",
         "icone": "🤖",
+        "nouvelOnglet": false
+      },
+      {
+        "lien": "https://docs.google.com/spreadsheets/d/1SvHzKd8yfaPzV5F1LWvKNYyA073mdYcGeTAHtMZbwhw/edit?usp=sharing",
+        "titre": "Benchmark Agilité et IA",
+        "description": "Le tableau Google Sheet qui contient tous les résultats de mes tests de différents IA sur des use cases de l'agilité. (ChatGPT, Claude, Gemini, DeepSeek, Mistral, Grok, Ollama, ...)",
+        "icone": "🧪",
         "nouvelOnglet": false
       }
     ]
