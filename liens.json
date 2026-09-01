@@ -51,6 +51,13 @@
         "description": "Un petit outil pour générer des prompts de thémification pour le template Speedboat",
         "icone": "🚤",
         "nouvelOnglet": false
+      },
+      {
+        "lien": "https://docs.google.com/spreadsheets/d/1qS6MUn9KNVA58uYXARZkCZIObgZJBJcIN6mRUCyX68Q/edit?usp=sharing",
+        "titre": "Catalogue d'actions de rétros",
+        "description": "Un catalogue d'actions de rétrospectives typiques, pour vous inspirer après avoir identifié des problèmes en rétrospective.",
+        "icone": "🎬",
+        "nouvelOnglet": false
       }
     ]
   },
