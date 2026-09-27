@@ -84,6 +84,14 @@
         "image": "https://agileanddevopstoolkit.github.io/Categorix/doc/categorix_icone.png",
         "icone": "",
         "nouvelOnglet": false
+      },
+      {
+        "lien": "https://agileanddevopstoolkit.github.io/PriorBoard/",
+        "titre": "PriorBoard",
+        "description": "Un gadget pour vous aider à prioriser une liste d'items en s'appuyant sur des battles et un classement ELO. Utile notamment pour prioriser des backlogs (Vision Produit)",
+        "image": "images/priorboard.png",
+        "icone": "",
+        "nouvelOnglet": false
       }
     ]
   },
