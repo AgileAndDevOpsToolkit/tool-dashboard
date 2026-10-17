@@ -6,6 +6,10 @@
         "/^cd /workspaces/tool-dashboard && php -S 0\\.0\\.0\\.0:8000 -t \\.$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^node --check <\\(sed -n '/<script>/,/<\\\\/script>/p' index\\.html \\| sed '1d;\\$d'\\)$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

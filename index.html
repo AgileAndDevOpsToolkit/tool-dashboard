@@ -300,7 +300,10 @@
   <script>
     "use strict";
 
-    const DATA_FILE = "liens.json";
+    const requestedDataFile = new URLSearchParams(window.location.search).get(
+      "data"
+    );
+    const DATA_FILE = requestedDataFile?.trim() || "liens.json";
     const categoriesContainer = document.getElementById("categories");
     const heroTitle = document.getElementById("hero-title");
     const heroSubtitle = document.getElementById("hero-subtitle");
@@ -480,13 +483,15 @@
 
     function showError(error) {
       console.error(error);
-      categoriesContainer.innerHTML = `
-        <div class="status status--error" role="alert">
-          Impossible de charger <strong>${DATA_FILE}</strong>.
-          Vérifiez que le fichier existe, que sa structure est valide et que
-          la page est servie par un serveur web.
-        </div>
-      `;
+      const errorMessage = document.createElement("div");
+      errorMessage.className = "status status--error";
+      errorMessage.setAttribute("role", "alert");
+      errorMessage.append(
+        "Impossible de charger ",
+        document.createTextNode(DATA_FILE),
+        ". Vérifiez que le fichier existe, que sa structure est valide et que la page est servie par un serveur web."
+      );
+      categoriesContainer.replaceChildren(errorMessage);
     }
 
     async function loadLinks() {
