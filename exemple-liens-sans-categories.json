@@ -1,0 +1,21 @@
+{
+  "titre": "Exemple de tableau de bord sans catégories",
+  "sousTitre": "Mon organisation",
+  "description": "Un exemple minimal de liens affichés au même niveau.",
+  "liens": [
+    {
+      "lien": "https://example.com/outils",
+      "titre": "Outil exemple",
+      "description": "Description de mon premier lien.",
+      "icone": "🛠️",
+      "nouvelOnglet": true
+    },
+    {
+      "lien": "https://example.com/ressources",
+      "titre": "Ressource exemple",
+      "description": "Description de mon deuxième lien.",
+      "icone": "📚",
+      "nouvelOnglet": true
+    }
+  ]
+}

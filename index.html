@@ -498,6 +498,25 @@
       );
     }
 
+    function renderLinks(links) {
+      const validLinks = links.filter(isValidApplication);
+
+      if (validLinks.length === 0) {
+        categoriesContainer.innerHTML =
+          '<p class="status">Aucun lien n’est configuré.</p>';
+        return;
+      }
+
+      const cards = document.createElement("div");
+      cards.className = "cards";
+      cards.append(
+        ...validLinks.map((link, linkIndex) =>
+          createCard(link, linkIndex)
+        )
+      );
+      categoriesContainer.replaceChildren(cards);
+    }
+
     function showError(error) {
       console.error(error);
       const errorMessage = document.createElement("div");
@@ -527,15 +546,21 @@
           !data ||
           typeof data !== "object" ||
           !getText(data.titre) ||
-          (data.categories !== undefined && !Array.isArray(data.categories))
+          (data.categories !== undefined && !Array.isArray(data.categories)) ||
+          (data.liens !== undefined && !Array.isArray(data.liens)) ||
+          (data.categories !== undefined && data.liens !== undefined)
         ) {
           throw new TypeError(
-            `${DATA_FILE} doit contenir un titre et, si présent, un tableau categories.`
+            `${DATA_FILE} doit contenir un titre et un seul tableau : categories ou liens.`
           );
         }
 
         renderHero(data);
-        renderCategories(data.categories || []);
+        if (data.categories !== undefined) {
+          renderCategories(data.categories);
+        } else {
+          renderLinks(data.liens || []);
+        }
       } catch (error) {
         showError(error);
       }

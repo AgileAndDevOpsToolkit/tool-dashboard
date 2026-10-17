@@ -1,0 +1,19 @@
+{
+  "titre": "Exemple de tableau de bord par catégories",
+  "sousTitre": "Mon organisation",
+  "description": "Un exemple minimal de liens organisés par catégories.",
+  "categories": [
+    {
+      "titre": "Outils d'équipe",
+      "applications": [
+        {
+          "lien": "https://example.com/outils",
+          "titre": "Outil exemple",
+          "description": "Description de mon premier lien.",
+          "icone": "🛠️",
+          "nouvelOnglet": true
+        }
+      ]
+    }
+  ]
+}
