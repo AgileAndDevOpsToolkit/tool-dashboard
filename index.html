@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
+    id="page-description"
     name="description"
-    content="Collection d'applications et d'outils interactifs Agile Toolkit"
+    content="Tool Dashboard - Collection de liens vers des sites ou applications web"
   >
-  <title>Collection d'applications | Agile Toolkit</title>
+  <title>Tool Dashboard</title>
 
   <style>
     :root {
@@ -308,14 +309,19 @@
     const heroTitle = document.getElementById("hero-title");
     const heroSubtitle = document.getElementById("hero-subtitle");
     const heroDescription = document.getElementById("hero-description");
-    const DEFAULT_HERO_TITLE = "Collection d'applications";
+    const pageDescription = document.getElementById("page-description");
+    const DEFAULT_PAGE_DESCRIPTION =
+      "Tool Dashboard - Collection de liens vers des sites ou applications web";
 
     function getText(value) {
       return typeof value === "string" ? value.trim() : "";
     }
 
     function renderHero(data) {
-      const title = getText(data.titre) || DEFAULT_HERO_TITLE;
+      const title = getText(data.titre);
+      const browserTitle = getText(data.titreNavigateur) || title;
+      const browserDescription =
+        getText(data.contentNavigateur) || DEFAULT_PAGE_DESCRIPTION;
       const subtitle = getText(data.sousTitre);
       const description = getText(data.description);
 
@@ -324,7 +330,8 @@
       heroSubtitle.hidden = !subtitle;
       heroDescription.textContent = description;
       heroDescription.hidden = !description;
-      document.title = title;
+      document.title = browserTitle;
+      pageDescription.content = browserDescription;
     }
 
     function createCard(application, applicationIndex) {
@@ -506,14 +513,19 @@
 
         const data = await response.json();
 
-        if (!data || typeof data !== "object" || !Array.isArray(data.categories)) {
+        if (
+          !data ||
+          typeof data !== "object" ||
+          !getText(data.titre) ||
+          (data.categories !== undefined && !Array.isArray(data.categories))
+        ) {
           throw new TypeError(
-            `${DATA_FILE} doit contenir un objet avec un tableau categories.`
+            `${DATA_FILE} doit contenir un titre et, si présent, un tableau categories.`
           );
         }
 
         renderHero(data);
-        renderCategories(data.categories);
+        renderCategories(data.categories || []);
       } catch (error) {
         showError(error);
       }
