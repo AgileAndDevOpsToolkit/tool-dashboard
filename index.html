@@ -281,12 +281,9 @@
 <body>
   <div class="page">
     <header class="hero">
-      <p class="hero__eyebrow">Agile Toolkit</p>
-      <h1>Collection d'applications</h1>
-      <p class="hero__description">
-        Une sélection d'outils interactifs, de jeux et de petites applications
-        conçus pour faciliter les ateliers, formations et animations d'équipe.
-      </p>
+      <p id="hero-subtitle" class="hero__eyebrow" hidden></p>
+      <h1 id="hero-title">Collection d'applications</h1>
+      <p id="hero-description" class="hero__description" hidden></p>
     </header>
 
     <main class="main">
@@ -305,6 +302,27 @@
 
     const DATA_FILE = "liens.json";
     const categoriesContainer = document.getElementById("categories");
+    const heroTitle = document.getElementById("hero-title");
+    const heroSubtitle = document.getElementById("hero-subtitle");
+    const heroDescription = document.getElementById("hero-description");
+    const DEFAULT_HERO_TITLE = "Collection d'applications";
+
+    function getText(value) {
+      return typeof value === "string" ? value.trim() : "";
+    }
+
+    function renderHero(data) {
+      const title = getText(data.titre) || DEFAULT_HERO_TITLE;
+      const subtitle = getText(data.sousTitre);
+      const description = getText(data.description);
+
+      heroTitle.textContent = title;
+      heroSubtitle.textContent = subtitle;
+      heroSubtitle.hidden = !subtitle;
+      heroDescription.textContent = description;
+      heroDescription.hidden = !description;
+      document.title = title;
+    }
 
     function createCard(application, applicationIndex) {
       const link = document.createElement("a");
@@ -483,13 +501,14 @@
 
         const data = await response.json();
 
-        if (!Array.isArray(data)) {
+        if (!data || typeof data !== "object" || !Array.isArray(data.categories)) {
           throw new TypeError(
-            `${DATA_FILE} doit contenir un tableau de catégories à la racine.`
+            `${DATA_FILE} doit contenir un objet avec un tableau categories.`
           );
         }
 
-        renderCategories(data);
+        renderHero(data);
+        renderCategories(data.categories);
       } catch (error) {
         showError(error);
       }

@@ -1,4 +1,8 @@
-[
+{
+  "titre": "Collection d'applications",
+  "sousTitre": "Agile Toolkit",
+  "description": "Une sélection d'outils interactifs, de jeux et de petites applications conçus pour faciliter les ateliers, formations et animations d'équipe.",
+  "categories": [
   {
     "titre": "Animations  et Ice Breakers",
     "applications": [
@@ -114,4 +118,5 @@
       }
     ]
   }
-]
+  ]
+}
