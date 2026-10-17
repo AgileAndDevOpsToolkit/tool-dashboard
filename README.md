@@ -17,6 +17,8 @@ optionnels :
 - `contentNavigateur` : description HTML de la page. Par défaut :
   `Tool Dashboard - Collection de liens vers des sites ou applications web`.
 - `sousTitre` et `description` : textes affichés dans l'en-tête.
+- `footer` : texte affiché dans le pied de page. Par défaut, un lien vers le
+  dépôt Tool Dashboard et le texte `by Agile Toolkit` sont affichés.
 - `categories` : tableau des catégories. S'il est absent, la page indique
   qu'aucune catégorie n'est configurée.
 
