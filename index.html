@@ -299,7 +299,7 @@
       </div>
     </main>
 
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <p id="footer-content">
         <a
           href="https://github.com/AgileAndDevOpsToolkit/tool-dashboard"
@@ -320,6 +320,7 @@
     const heroSubtitle = document.getElementById("hero-subtitle");
     const heroDescription = document.getElementById("hero-description");
     const pageDescription = document.getElementById("page-description");
+    const footer = document.getElementById("footer");
     const footerContent = document.getElementById("footer-content");
     const DEFAULT_PAGE_DESCRIPTION =
       "Tool Dashboard - Collection de liens vers des sites ou applications web";
@@ -335,7 +336,7 @@
         getText(data.contentNavigateur) || DEFAULT_PAGE_DESCRIPTION;
       const subtitle = getText(data.sousTitre);
       const description = getText(data.description);
-      const footer = getText(data.footer);
+      const footerText = getText(data.footer);
 
       heroTitle.textContent = title;
       heroSubtitle.textContent = subtitle;
@@ -344,9 +345,10 @@
       heroDescription.hidden = !description;
       document.title = browserTitle;
       pageDescription.content = browserDescription;
+      footer.hidden = Object.hasOwn(data, "footer") && data.footer === "";
 
-      if (footer) {
-        footerContent.textContent = footer;
+      if (footerText) {
+        footerContent.textContent = footerText;
       }
     }
 
