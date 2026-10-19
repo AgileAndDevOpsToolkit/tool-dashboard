@@ -5,3 +5,8 @@ Actuellement la largeur des cases de chaque tool dépend du nombre de tools sur 
 ```
 Peux-tu faire en sorte que si dans liens.json l'entrée footer existe mais contient la chaîne vide alors il n'y a pas de footer. En revanche si l'entrée footer n'existe pas, alors ça affiche la valeur par défaut déjà définie précédemment
 ```
+
+```
+Peux-tu supprimer dans chaque carte la partie "Ouvrir l'application" qui est inutile.
+Supprime également l'affichage du nombre d'applications pour chaque catégorie
+```
