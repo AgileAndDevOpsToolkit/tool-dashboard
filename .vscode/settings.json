@@ -10,6 +10,14 @@
         "/^node --check <\\(sed -n '/<script>/,/<\\\\/script>/p' index\\.html \\| sed '1d;\\$d'\\)$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^pwd; find \\. -maxdepth 2 -type f -name 'index\\.php' -o -name 'index\\.html' \\| head -20; php -v \\| head -1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^php -S 0\\.0\\.0\\.0:8000 -t \\.$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

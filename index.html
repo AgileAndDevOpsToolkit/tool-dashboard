@@ -24,6 +24,7 @@
       --shadow: 0 8px 24px rgba(140, 149, 159, 0.16);
       --radius: 12px;
       --content-width: 1180px;
+      --card-width: 280px;
     }
 
     * {
@@ -123,7 +124,8 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      grid-template-columns: repeat(auto-fit, var(--card-width));
+      justify-content: center;
       gap: 1.25rem;
     }
 
@@ -261,6 +263,10 @@
         align-items: flex-start;
         flex-direction: column;
         gap: 0.25rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
       }
 
       .card {
